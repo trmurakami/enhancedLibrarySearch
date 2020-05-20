@@ -21,35 +21,23 @@
         <meta property="og:type" content="website">
         Facebook Tags - END -->
 
-        <style>
-            .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            }
-            @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-            }
-            .jumbotron {
-            background-image: url("<?php echo $background_1 ?>");
-            background-size: 100%;
-            background-repeat: no-repeat;            
-            }    
-        </style>
-        
+      
     </head>
 
-    <body>
-            <?php 
-                print_r('Você pesquisou por '.$_REQUEST["search"].'');
+    <body class="text-center">
+        <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+            
+            <main role="main" class="inner cover">
+                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                <h1 class="cover-heading"><?php print_r('Você pesquisou por '.$_REQUEST["search"].''); ?></h1>
+                <p class="lead">A categoria da sua pergunta é: 
+                <?php 
+                    $json = file_get_contents('http://localhost:5000/api/v1/title?title='. htmlentities(urlencode($_REQUEST["search"]), ENT_QUOTES).'');
+                    var_dump($json);
+                ?>.
+                </p>
+            </main>
 
-                $json = file_get_contents('http://localhost:5000/api/v1/title?title="'.$_REQUEST["search"].'"');
-                var_dump($json);
-            ?>
+        </div>
     </body>
 </html>
