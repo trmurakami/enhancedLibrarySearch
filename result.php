@@ -3,6 +3,9 @@
     <head>
         <?php             
             include('inc/meta-header.php');
+
+            error_reporting(E_ALL); 
+            ini_set('display_errors', 1);
         ?> 
         <title>Busca</title>
         <!-- Facebook Tags - START 
@@ -42,6 +45,11 @@
     </head>
 
     <body>
-            <?php print_r('Você pesquisou por '.$_REQUEST["search"].''); ?>
+            <?php 
+                print_r('Você pesquisou por '.$_REQUEST["search"].'');
+
+                $json = file_get_contents('http://localhost:5000/api/v1/title?title="'.$_REQUEST["search"].'"');
+                var_dump($json);
+            ?>
     </body>
 </html>
