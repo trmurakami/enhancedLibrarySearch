@@ -54,9 +54,7 @@
                             <button type="submit" class="btn btn-primary">Pesquisar</button>
                         </div>
                     </div>                       
-                    <small id="searchHelp" class="form-text text-muted">Dica: Use * para busca por radical. Ex: biblio*.</small>
-                    <small id="searchHelp" class="form-text text-muted">Dica 2: Para buscas exatas, coloque entre ""</small>
-                    <small id="searchHelp" class="form-text text-muted">Dica 3: Você também pode usar operadores booleanos: AND, OR</small>
+                    <small id="searchHelp" class="form-text text-muted">Atualmente só estão classificadas as categorias HORARIO e NORMALIZAÇÃO.</small>
                 </form>
 
             </div>
