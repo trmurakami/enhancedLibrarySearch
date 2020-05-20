@@ -49,7 +49,7 @@
 
                 <form class="mt-3" action="result.php">                
                     <div class="input-group">                    
-                        <input type="text" name="search" class="form-control" id="searchQuery" aria-describedby="searchHelp" placeholder="O que você procura?">
+                        <input type="text" name="search" class="form-control" id="searchQuery" aria-describedby="searchHelp" placeholder="Pergunte algo sobre a Biblioteca?">
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-primary">Pesquisar</button>
                         </div>
