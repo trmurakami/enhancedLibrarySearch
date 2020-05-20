@@ -63,12 +63,13 @@ def api_id():
     if 'title' in request.args:
         title = request.args['title']
         predict_result = clf.predict(count_vect.transform([title]))
+        predict_proba = (clf.predict_proba(count_vect.transform([title]))[:,1])
     else:
         return "Error: Não foi informado um título."
 
     # Create an empty list for our results
     
 
-    return jsonify(predict_result[0])
+    return jsonify(predict_result[0],predict_proba[0])
 
 app.run()

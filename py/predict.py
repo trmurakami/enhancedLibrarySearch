@@ -9,7 +9,6 @@ try:
     nltk.data.find('corpora/stopwords')
 except LookupError:
     nltk.download('stopwords')
-import pickle
 from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
@@ -17,7 +16,6 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.neural_network import MLPClassifier
 import joblib
-import numpy as np
 
 dadosBiblioteca = pd.read_csv('data.tsv',sep="\t")
 
@@ -47,3 +45,5 @@ except FileNotFoundError:
     joblib.dump(clf, joblib_file)
 
 print(clf.predict(count_vect.transform([sys.argv[1]])))
+
+print(clf.predict_proba(count_vect.transform([sys.argv[1]]))[:,1])
