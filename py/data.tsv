@@ -2,4 +2,11 @@ label	dados
 HORARIO	Que horas abre a biblioteca?
 HORARIO	Tá aberto
 NORMALIZACAO	regras da ABNT
-HORARIO horário de funcionamento
+HORARIO	horário de funcionamento
+NORMALIZACAO	mais sobre normalização
+DOACAO	Vocês aceitam recortes de jornais antigos sobre artistas estrangeiros?
+DOACAO	voces recebem doações?
+DOACAO	gostaria de fazer uma doação
+FICHA_CATALOGRAFICA	gostaria de fazer uma ficha catalográfica
+FICHA_CATALOGRAFICA	Entreguei na secretaria a ficha catalográfica
+ACESSO_A_RECURSOS	Gostaria de obter acesso, mas não consigo abrir no sistema Dédalus, vcs podem me auxiliar em procedimentos?
