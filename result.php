@@ -33,7 +33,10 @@
                 <p class="lead">A categoria da sua pergunta é: 
                 <?php 
                     $json = file_get_contents('http://localhost:5000/api/v1/title?title='. htmlentities(urlencode($_REQUEST["search"]), ENT_QUOTES).'');
-                    var_dump($json);
+                    $response_array = json_decode($json);
+                    echo $response_array[0];
+                    echo "<br/>";
+                    echo 'A probabilidade de acerto é '.$response_array[1].'';
                 ?>.
                 </p>
             </main>
