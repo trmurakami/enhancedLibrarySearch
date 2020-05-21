@@ -29,7 +29,7 @@
             
             <main role="main" class="inner cover">
                 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                <h1 class="cover-heading"><?php print_r('Você pesquisou por '.$_REQUEST["search"].''); ?></h1>
+                <h1 class="cover-heading"><?php print_r('Você pesquisou por: '.$_REQUEST["search"].''); ?></h1>
                 <p class="lead">A categoria da sua pergunta é: 
                 <?php 
                     $json = file_get_contents('http://localhost:5000/api/v1/title?title='. htmlentities(urlencode($_REQUEST["search"]), ENT_QUOTES).'');
