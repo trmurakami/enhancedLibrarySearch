@@ -36,7 +36,19 @@
                     $response_array = json_decode($json);
                     echo $response_array[0];
                     echo "<br/>";
-                    echo 'A probabilidade de acerto é '.$response_array[1].'';
+                    rsort($response_array[1]);
+                    echo 'A probabilidade de acerto é: '.round($response_array[1][0], 2).'';
+                    echo "<br/>";
+                    $predict_number = round($response_array[1][0], 2);
+                    if ($predict_number < 1) {
+                        echo "A resposta não é confiável";
+                    } else {
+                        echo "A resposta é confiável";
+                    }
+                    echo "<br/>";
+                    var_dump($response_array[1]);
+                    echo "<br/>";
+                    echo number_format($response_array[1][0],2)
                 ?>.
                 </p>
             </main>
