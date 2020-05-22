@@ -73,4 +73,5 @@ print('Test accuracy:', score[1])
 
 text = tokenize.texts_to_matrix([sys.argv[1]])
 prediction = model.predict(np.array(text))
+prediction.sort()
 print(prediction)
