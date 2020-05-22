@@ -40,7 +40,7 @@
                     echo 'A probabilidade de acerto é: '.round($response_array[1][0], 2).'';
                     echo "<br/>";
                     $predict_number = round($response_array[1][0], 2);
-                    if ($predict_number < 1) {
+                    if ($predict_number < 0.75) {
                         echo "A resposta não é confiável";
                     } else {
                         echo "A resposta é confiável";
