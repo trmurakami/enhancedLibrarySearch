@@ -3,6 +3,7 @@
     <head>
         <?php             
             include('inc/meta-header.php');
+            include('inc/functions.php');
 
             error_reporting(E_ALL); 
             ini_set('display_errors', 1);
@@ -29,27 +30,32 @@
             
             <main role="main" class="inner cover">
                 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                <h1 class="cover-heading"><?php print_r('Você pesquisou por: '.$_REQUEST["search"].''); ?></h1>
+                <!-- <h1 class="cover-heading"><?php print_r('Você pesquisou por: '.$_REQUEST["search"].''); ?></h1> -->
                 <p class="lead">A categoria da sua pergunta é: 
                 <?php 
                     $json = file_get_contents('http://localhost:5000/api/v1/title?title='. htmlentities(urlencode($_REQUEST["search"]), ENT_QUOTES).'');
                     $response_array = json_decode($json);
-                    echo $response_array[0];
-                    echo "<br/>";
                     rsort($response_array[1]);
-                    echo 'A probabilidade de acerto é: '.round($response_array[1][0], 2).'';
-                    echo "<br/>";
                     $predict_number = round($response_array[1][0], 2);
                     if ($predict_number < 0.75) {
-                        echo "A resposta não é confiável";
+                        echo 'Não foi possível categorizar sua pergunta com confiabilidade. Mas você pode visitar o <a href="http://www3.eca.usp.br/biblioteca/">site da biblioteca</a> ou enviar um e-mail para a nós: ecabiblioteca@usp.br';
                     } else {
-                        echo "A resposta é confiável";
+                        //echo "A resposta é confiável";
+                        print_r(divResponse($_REQUEST["search"],$response_array[0]));
                     }
+                    // echo "<br/>";
+                    // var_dump($response_array[1]);
+                    // echo "<br/>";
+                    // echo number_format($response_array[1][0],2);
+                    // echo "<br/>";
+                    echo "<br/><br/><br/><br/><br/>";
+                    echo $response_array[0];
                     echo "<br/>";
-                    var_dump($response_array[1]);
+                    echo 'A probabilidade de acerto é: '.round($response_array[1][0], 2).'';
                     echo "<br/>";
-                    echo number_format($response_array[1][0],2)
-                ?>.
+                    
+
+                ?>
                 </p>
             </main>
 
