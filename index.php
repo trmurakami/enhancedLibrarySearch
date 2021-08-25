@@ -35,7 +35,7 @@
             .jumbotron {
             background-image: url("<?php echo $background_1 ?>");
             background-size: 100%;
-            background-repeat: no-repeat;            
+            background-repeat: no-repeat;
             }    
         </style>
         
@@ -47,14 +47,14 @@
                 <h1 class="display-5">Pesquisar</h1>
                 <p><?php echo $branch_description; ?></p>
 
-                <form class="mt-3" action="result.php">                
-                    <div class="input-group">                    
-                        <input type="text" name="search" class="form-control" id="searchQuery" aria-describedby="searchHelp" placeholder="Pergunte algo sobre a Biblioteca?">
+                <form class="mt-3" action="result.php">
+                    <div class="input-group">
+                        <input type="text" name="search" class="form-control" id="searchQuery" aria-describedby="searchHelp" placeholder="Digite um título em inglês">
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-primary">Pesquisar</button>
                         </div>
-                    </div>                       
-                    <small id="searchHelp" class="form-text text-muted">Atualmente só estão classificadas as categorias HORARIO e NORMALIZAÇÃO.</small>
+                    </div>
+                    <small id="searchHelp" class="form-text text-muted"></small>
                 </form>
 
             </div>

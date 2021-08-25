@@ -23,11 +23,11 @@ from sklearn.neural_network import MLPClassifier
 import joblib
 import numpy as np
 
-dadosBiblioteca = pd.read_csv('data.tsv',sep="\t")
+dadosBiblioteca = pd.read_csv('data_sdg.tsv',sep="\t")
 
-tfidf = TfidfVectorizer(sublinear_tf=True, min_df=5, norm='l2', encoding='utf-8', ngram_range=(1, 2), stop_words=stopwords.words('portuguese'))
+tfidf = TfidfVectorizer(sublinear_tf=True, min_df=5, norm='l2', encoding='utf-8', ngram_range=(1, 2), stop_words=stopwords.words('english'))
 
-X_train, X_test, y_train, y_test = train_test_split(dadosBiblioteca['dados'], dadosBiblioteca['label'], test_size=0.30, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(dadosBiblioteca['dados'], dadosBiblioteca['label'], test_size=0.01, random_state=42)
 
 count_vect = CountVectorizer()
 
@@ -46,7 +46,7 @@ try:
     clf = joblib.load(joblib_file)
 except FileNotFoundError:
     print('File does not exist')
-    clf = MLPClassifier(solver='lbfgs', alpha=1e-5, hidden_layer_sizes=(70, ), random_state=1, max_iter=200, verbose=True)
+    clf = MLPClassifier(solver='lbfgs', alpha=1e-5, hidden_layer_sizes=(70, ), random_state=1, max_iter=409600, verbose=True)
     clf.fit(X_train_tfidf_vectorize, y_train)
     joblib.dump(clf, joblib_file)
 
