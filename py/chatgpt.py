@@ -19,7 +19,7 @@ tokenizer.fit_on_texts(texts)
 sequences = tokenizer.texts_to_sequences(texts)
 
 # Tamanho máximo das sequências (ajuste conforme necessário)
-max_sequence_length = 256
+max_sequence_length = 128
 
 # Padding das sequências para o mesmo tamanho
 sequences_padded = pad_sequences(sequences, maxlen=max_sequence_length)
@@ -37,14 +37,14 @@ X_train, X_test, y_train, y_test = train_test_split(
     sequences_padded, encoded_labels, test_size=0.2, random_state=42)
 
 model = Sequential()
-model.add(Embedding(vocab_size, 100,
+model.add(Embedding(vocab_size, 10,
           input_length=max_sequence_length, mask_zero=True))
-model.add(LSTM(256, dropout=0.2, recurrent_dropout=0.2))
+model.add(LSTM(128, dropout=0.2, recurrent_dropout=0.2))
 model.add(Dense(num_classes, activation='softmax'))
 
 model.compile(loss='sparse_categorical_crossentropy',
-              optimizer='sgd', metrics=['accuracy'])
-model.fit(X_train, y_train, batch_size=128, epochs=10,
+              optimizer='adam', metrics=['accuracy'])
+model.fit(X_train, y_train, batch_size=128, epochs=15,
           validation_data=(X_test, y_test))
 
 loss, accuracy = model.evaluate(X_test, y_test)

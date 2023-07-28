@@ -12,14 +12,14 @@ model = load_model('modelo_text_classifier.keras')
 
 # Exemplo de novo texto para classificar
 novo_texto = [
-    "An Augmented Deep Learning Inference Approach of Vehicle Headlight Recognition for On-Road Vehicle Detection and Counting"]
+    "Sensing and sensitive visualization of latent fingerprints on various surfaces using a versatile fluorescent aggregation-induced emission-based coumarin derivative"]
 
 # Tamanho máximo das sequências (ajuste conforme necessário)
-max_sequence_length = 256
+max_sequence_length = 128
 
 # Pré-processamento do novo texto
 tokenizer = Tokenizer()
-novo_texto_sequences = tokenizer.texts_to_sequences(novo_texto)
+novo_texto_sequences = tokenizer.texts_to_sequences(novo_texto[0])
 novo_texto_padded = pad_sequences(
     novo_texto_sequences, maxlen=max_sequence_length)
 
@@ -35,4 +35,4 @@ classe_predita = label_encoder.inverse_transform(
 
 # Exibir a classe prevista
 print(f"Texto: {novo_texto}")
-print(f"Classe prevista: {classe_predita}")
+print(f"Classe prevista: {classe_predita[0]}")
