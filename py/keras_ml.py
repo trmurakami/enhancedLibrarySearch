@@ -16,7 +16,7 @@ from keras.layers import Dense, Activation, Dropout
 from keras.preprocessing import text, sequence
 from keras import utils
 
-df = pd.read_csv('data.tsv',sep="\t")
+df = pd.read_csv('/var/www/html/ml/py/train_test.tsv',sep="\t")
 df = df[pd.notnull(df['label'])]
 print(df.head(10))
 print(df['dados'].apply(lambda x: len(x.split(' '))).sum())
@@ -71,7 +71,7 @@ score = model.evaluate(x_test, y_test,
 print('Test accuracy:', score[1])
 
 
-text = tokenize.texts_to_matrix([sys.argv[1]])
+text = tokenize.texts_to_matrix(['The impact of subject-specific competencies and reading habits on the income of Japanese business and economics graduates'])
 prediction = model.predict(np.array(text))
 prediction.sort()
 print(prediction)

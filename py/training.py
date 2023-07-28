@@ -1,9 +1,4 @@
 #!/usr/bin/python3
-import flask
-from flask import request, jsonify
-
-app = flask.Flask(__name__)
-app.config["DEBUG"] = True
 
 import sys
 import pandas as pd
@@ -21,7 +16,6 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.neural_network import MLPClassifier
 import joblib
-import numpy as np
 
 dadosBiblioteca = pd.read_csv('/var/www/html/ml/py/train_test.tsv',sep="\t")
 
@@ -46,31 +40,8 @@ try:
     clf = joblib.load(joblib_file)
 except FileNotFoundError:
     print('File does not exist')
-    # clf = MLPClassifier(solver='sgd', alpha=1e-5, hidden_layer_sizes=(70, ),
-    #                     random_state=42, max_iter=409600, verbose=True, warm_start=True)
-    # clf.fit(X_train_tfidf_vectorize, y_train)
-    # joblib.dump(clf, joblib_file)
+    clf = MLPClassifier(solver='sgd', alpha=1e-5, hidden_layer_sizes=(70, ), random_state=42, max_iter=10000, verbose=True, warm_start=True)
+    clf.fit(X_train_tfidf_vectorize, y_train)
+    joblib.dump(clf, joblib_file)
 
-
-@app.route('/', methods=['GET'])
-def home():
-    return "<h1>Distant Reading Archive</h1><p>This site is a prototype API for distant reading of science fiction novels.</p>"
-
-@app.route('/api/v1/title', methods=['GET'])
-def api_id():
-    # Check if an ID was provided as part of the URL.
-    # If ID is provided, assign it to a variable.
-    # If no ID is provided, display an error in the browser.
-    if 'title' in request.args:
-        title = request.args['title']
-        predict_result = clf.predict(count_vect.transform([title]))
-        predict_proba = (clf.predict_proba(count_vect.transform([title])))
-    else:
-        return "Error: Não foi informado um título."
-
-    # Create an empty list for our results
-    
-
-    return jsonify(predict_result[0],predict_proba[0].tolist())
-
-app.run()
+print(clf.predict(count_vect.transform(['i love my iphone'])))
