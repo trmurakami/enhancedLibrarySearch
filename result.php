@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt-br" dir="ltr">
-    <head>
-        <?php             
+
+<head>
+    <?php             
             include('inc/meta-header.php');
             include('inc/functions.php');
 
             error_reporting(E_ALL); 
             ini_set('display_errors', 1);
-        ?> 
-        <title>Busca</title>
-        <!-- Facebook Tags - START 
+        ?>
+    <title>Busca</title>
+    <!-- Facebook Tags - START 
         <meta property="og:locale" content="pt_BR">
         <meta property="og:url" content="< ?php echo $url_base ?>">
         <meta property="og:title" content="< ?php echo $branch ?> - Página Principal">
@@ -22,43 +23,27 @@
         <meta property="og:type" content="website">
         Facebook Tags - END -->
 
-      
-    </head>
 
-    <body class="text-center">
-        <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-            
-            <main role="main" class="inner cover">
-                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                <!-- <h1 class="cover-heading"><?php print_r('Você pesquisou por: '.$_REQUEST["search"].''); ?></h1> -->
-                <p class="lead">A categoria da sua pergunta é: 
+</head>
+
+<body class="text-center">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+
+        <main role="main" class="inner cover">
+            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+            <!-- <h1 class="cover-heading"><?php print_r('Você pesquisou por: '.$_REQUEST["search"].''); ?></h1> -->
+            <p class="lead">A categoria da sua pergunta é:
                 <?php 
                     $json = file_get_contents('http://localhost:5000/api/v1/title?title='. htmlentities(urlencode($_REQUEST["search"]), ENT_QUOTES).'');
                     $response_array = json_decode($json);
-                    rsort($response_array[1]);
-                    $predict_number = round($response_array[1][0], 2);
-                    if ($predict_number < 0.75) {
-                        echo 'Não foi possível categorizar sua pergunta com confiabilidade. Mas você pode visitar o <a href="http://www3.eca.usp.br/biblioteca/">site da biblioteca</a> ou enviar um e-mail para a nós: ecabiblioteca@usp.br';
-                    } else {
-                        //echo "A resposta é confiável";
-                        print_r(divResponse($_REQUEST["search"],$response_array[0]));
-                    }
-                    // echo "<br/>";
-                    // var_dump($response_array[1]);
-                    // echo "<br/>";
-                    // echo number_format($response_array[1][0],2);
-                    // echo "<br/>";
-                    echo "<br/><br/><br/><br/><br/>";
-                    echo $response_array[0];
-                    echo "<br/>";
-                    echo 'A probabilidade de acerto é: '.round($response_array[1][0], 2).'';
-                    echo "<br/>";
+                    print_r($response_array);
                     
 
                 ?>
-                </p>
-            </main>
+            </p>
+        </main>
 
-        </div>
-    </body>
+    </div>
+</body>
+
 </html>
