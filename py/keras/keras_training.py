@@ -5,6 +5,7 @@ from sklearn.model_selection import train_test_split
 import tensorflow as tf
 from tensorflow import keras
 from keras_preprocessing.sequence import pad_sequences
+import pickle
 
 
 data = pd.read_csv('/var/www/html/ml/py/data/Scopus_SDG.tsv', delimiter='\t')
@@ -16,6 +17,10 @@ texts, labels = shuffle(texts, labels, random_state=42)
 tokenizer = keras.preprocessing.text.Tokenizer()
 tokenizer.fit_on_texts(texts)
 sequences = tokenizer.texts_to_sequences(texts)
+
+with open('tokenizer.pickle', 'wb') as handle:
+    pickle.dump(tokenizer, handle, protocol=pickle.HIGHEST_PROTOCOL)
+
 
 max_sequence_length = 192
 

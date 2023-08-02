@@ -1,3 +1,4 @@
+import sys
 import pandas as pd
 
 from sklearn.preprocessing import LabelEncoder
@@ -6,20 +7,17 @@ from tensorflow import keras
 from keras.models import load_model
 from keras.preprocessing.text import Tokenizer
 from keras_preprocessing.sequence import pad_sequences
+import pickle
 
-data = pd.read_csv('/var/www/html/ml/py/data/Scopus_SDG.tsv', delimiter='\t')
-texts = data['Data'].tolist()
-labels = data['Label'].tolist()
+labels = ['SDG01', 'SDG02', 'SDG03', 'SDG04',
+          'SDG05', 'SDG06', 'SDG07', 'SDG08']
 
-tokenizer = keras.preprocessing.text.Tokenizer()
-tokenizer.fit_on_texts(texts)
-sequences = tokenizer.texts_to_sequences(texts)
+# Carregar o modelo tokenizador
+with open('tokenizer.pickle', 'rb') as handle:
+    tokenizer = pickle.load(handle)
 
 # Carregar o modelo treinado
 model = load_model('model_text_classifier.keras')
-
-# Tokenização dos textos
-tokenizer = Tokenizer()
 
 # Tamanho máximo das sequências (ajuste conforme necessário)
 max_sequence_length = 192
@@ -30,16 +28,10 @@ label_encoder = LabelEncoder()
 encoded_labels = label_encoder.fit_transform(labels)
 num_classes = len(label_encoder.classes_)
 
+query_texts = [sys.argv[1]]
+sequences = tokenizer.texts_to_sequences(query_texts)
 sequences_padded = pad_sequences(sequences, maxlen=max_sequence_length)
 
-X_train, X_test, y_train, y_test = train_test_split(
-    sequences_padded, encoded_labels, test_size=0.2, random_state=42)
-
-
-predictions = model.predict(X_test)
-y_pred = predictions.argmax(axis=1)
-y_test = y_test.astype('int')
-print(y_pred)
-print(y_test)
-print(label_encoder.inverse_transform(y_pred))
-print(label_encoder.inverse_transform(y_test))
+prediction = model.predict(sequences_padded)
+print(prediction)
+print(label_encoder.inverse_transform(prediction.argmax(axis=1))[0])
