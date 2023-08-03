@@ -34,6 +34,7 @@ async function loadModel() {
 
 // tokenize function to convert input text to list of tokenized segments
 function tokenize(text) {
+    text = text.toLowerCase();
     var split_text = text.split(' ');
     var tokens = [];
     split_text.forEach(element => {
