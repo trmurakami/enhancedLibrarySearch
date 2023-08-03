@@ -14,7 +14,7 @@ data = pd.read_csv('/var/www/html/ml/py/data/Scopus_SDG.tsv', delimiter='\t')
 texts = data['Data'].tolist()
 labels = data['Label'].tolist()
 
-texts, labels = shuffle(texts, labels, random_state=42)
+# texts, labels = shuffle(texts, labels, random_state=42)
 
 tokenizer = keras.preprocessing.text.Tokenizer()
 tokenizer.fit_on_texts(texts)

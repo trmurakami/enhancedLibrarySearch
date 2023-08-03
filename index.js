@@ -102,7 +102,7 @@ for (let i = 0; i < prob.length; i++) {
   const probabilityCell = row.insertCell(2);
   const top3Cell = row.insertCell(3);
 
-  exampleCell.innerHTML = `Exemplo ${i + 1}`;
+  exampleCell.innerHTML = `${i + 1}`;
   mostProbableCell.innerHTML = classNames[mostProbableClass];
   probabilityCell.innerHTML = exampleProbabilities[mostProbableClass].toFixed(4);
   top3Cell.innerHTML = top3Classes.map((classIndex) => `${classNames[classIndex]} (${exampleProbabilities[classIndex].toFixed(4)})`).join(', ');
