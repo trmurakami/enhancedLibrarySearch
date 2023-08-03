@@ -5,64 +5,43 @@
     <?php
         include('inc/meta-header.php');
     ?>
-    <title>Busca</title>
-    <!-- Facebook Tags - START 
-        <meta property="og:locale" content="pt_BR">
-        <meta property="og:url" content="< ?php echo $url_base ?>">
-        <meta property="og:title" content="< ?php echo $branch ?> - Página Principal">
-        <meta property="og:site_name" content="< ?php echo $branch ?>">
-        <meta property="og:description" content="< ?php echo $branch_description ?>">
-        <meta property="og:image" content="< ?php echo $facebook_image ?>">
-        <meta property="og:image:type" content="image/jpeg">
-        <meta property="og:image:width" content="800"> 
-        <meta property="og:image:height" content="600"> 
-        <meta property="og:type" content="website">
-        Facebook Tags - END -->
-
-    <style>
-    .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-    }
-
-    @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-            font-size: 3.5rem;
-        }
-    }
-
-    .jumbotron {
-        background-image: url("<?php echo $background_1 ?>");
-        background-size: 100%;
-        background-repeat: no-repeat;
-    }
-    </style>
+    <!-- Load TensorFlow.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <title>Classificador de SDGs</title>
 
 </head>
 
 <body>
     <div class="jumbotron">
         <div class="container bg-light p-5 rounded mt-5">
-            <h1 class="display-5">Pesquisar</h1>
+            <h1 class="display-5">Classificador de SDGs</h1>
             <p><?php echo $branch_description; ?></p>
 
-            <form class="mt-3" action="result.php">
-                <div class="input-group">
-                    <input type="text" name="search" class="form-control" id="searchQuery" aria-describedby="searchHelp"
-                        placeholder="Digite um título em inglês">
-                    <div class="input-group-append">
-                        <button type="submit" class="btn btn-primary">Pesquisar</button>
-                    </div>
+            <div class="ml-container">
+                <label for="search" class="form-label">Digite título e resumo</label>
+                <textarea class="form-control" id="userInput" rows="6"
+                    placeholder="Digite um título e resumo em inglês"></textarea>
+                <div id="submit-button">
+                    <button type="submit" class="btn btn-primary mt-2" id="predict-btn" disabled=True>Predict!</button>
                 </div>
-                <small id="searchHelp" class="form-text text-muted"></small>
-            </form>
+            </div>
+            <br />
+            <div id="result"></div>
+
+            <table id="predictions-table" class="table mt-5">
+                <tr>
+                    <th>Exemplo</th>
+                    <th>Classe Mais Provável</th>
+                    <th>Probabilidade</th>
+                    <th>Top 3 Classes</th>
+                </tr>
+            </table>
 
         </div>
     </div>
+
+
+    <script src="./index.js"></script>
 </body>
 
 </html>

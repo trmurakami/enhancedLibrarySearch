@@ -6,6 +6,8 @@ import tensorflow as tf
 from tensorflow import keras
 from keras_preprocessing.sequence import pad_sequences
 import pickle
+import json
+import io
 
 
 data = pd.read_csv('/var/www/html/ml/py/data/Scopus_SDG.tsv', delimiter='\t')
@@ -20,6 +22,10 @@ sequences = tokenizer.texts_to_sequences(texts)
 
 with open('tokenizer.pickle', 'wb') as handle:
     pickle.dump(tokenizer, handle, protocol=pickle.HIGHEST_PROTOCOL)
+
+tokenizer_json = tokenizer.to_json()
+with io.open('tokenizer_dictionary.json', 'w', encoding='utf-8') as f:
+    f.write(json.dumps(tokenizer_json, ensure_ascii=False))
 
 
 max_sequence_length = 256
