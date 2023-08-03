@@ -22,7 +22,7 @@ with open('tokenizer.pickle', 'wb') as handle:
     pickle.dump(tokenizer, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
 
-max_sequence_length = 192
+max_sequence_length = 256
 
 sequences_padded = pad_sequences(sequences, maxlen=max_sequence_length)
 
@@ -38,12 +38,12 @@ X_train, X_test, y_train, y_test = train_test_split(
 model = keras.Sequential()
 model.add(keras.layers.Embedding(vocab_size, 10,
                                  input_length=max_sequence_length, mask_zero=True))
-model.add(keras.layers.LSTM(128, dropout=0.2, recurrent_dropout=0.2))
+model.add(keras.layers.LSTM(256, dropout=0.2, recurrent_dropout=0.2))
 model.add(keras.layers.Dense(num_classes, activation='softmax'))
 
 model.compile(loss='sparse_categorical_crossentropy',
               optimizer='adam', metrics=['accuracy'])
-model.fit(X_train, y_train, batch_size=192, epochs=15,
+model.fit(X_train, y_train, batch_size=256, epochs=20,
           validation_data=(X_test, y_test))
 
 loss, accuracy = model.evaluate(X_test, y_test)

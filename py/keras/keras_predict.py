@@ -10,7 +10,10 @@ from keras_preprocessing.sequence import pad_sequences
 import pickle
 
 labels = ['SDG01', 'SDG02', 'SDG03', 'SDG04',
-          'SDG05', 'SDG06', 'SDG07', 'SDG08']
+          'SDG05', 'SDG06', 'SDG07', 'SDG08',
+          'SDG09', 'SDG10', 'SDG11', 'SDG12',
+          'SDG13', 'SDG14', 'SDG15', 'SDG16',
+          'SDG17']
 
 # Carregar o modelo tokenizador
 with open('tokenizer.pickle', 'rb') as handle:
@@ -20,7 +23,7 @@ with open('tokenizer.pickle', 'rb') as handle:
 model = load_model('model_text_classifier.keras')
 
 # Tamanho máximo das sequências (ajuste conforme necessário)
-max_sequence_length = 192
+max_sequence_length = 256
 
 # Converter as etiquetas em números (opcional, dependendo do formato das etiquetas)
 
