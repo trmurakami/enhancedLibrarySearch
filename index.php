@@ -25,8 +25,6 @@
                     <button type="submit" class="btn btn-primary mt-2" id="predict-btn" disabled=True>Predict!</button>
                 </div>
             </div>
-            <br />
-            <div id="result"></div>
 
             <table id="predictions-table" class="table mt-5">
                 <tr>
