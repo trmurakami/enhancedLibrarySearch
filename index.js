@@ -104,7 +104,7 @@ for (let i = 0; i < prob.length; i++) {
 
   exampleCell.innerHTML = `${i + 1}`;
   mostProbableCell.innerHTML = '<img src="images/'+classNames[mostProbableClass]+'.png" width="80" height="80" alt="'+classNames[mostProbableClass]+'" />';
-  probabilityCell.innerHTML = exampleProbabilities[mostProbableClass]*100+'%';
+  probabilityCell.innerHTML = '<div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="'+exampleProbabilities[mostProbableClass].toFixed(2)*100+'" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-success" style="width: '+exampleProbabilities[mostProbableClass].toFixed(2)*100+'%">'+exampleProbabilities[mostProbableClass].toFixed(2)*100+'%</div></div>'+exampleProbabilities[mostProbableClass].toFixed(4)+'';
   top3Cell.innerHTML = top3Classes.map((classIndex) => `<img src="images/${classNames[classIndex]}.png" width="80" height="80"> (${exampleProbabilities[classIndex].toFixed(4)})`).join(', ');
 }
 
