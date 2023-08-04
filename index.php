@@ -7,7 +7,7 @@
     ?>
     <!-- Load TensorFlow.js -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
-    <title>Classificador de Sustainable Development Goals (SDGs)</title>
+    <title>Classificador - Sustainable Development Goals (SDGs)</title>
 </head>
 
 <body>
