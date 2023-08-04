@@ -70,7 +70,7 @@ async function predictParty() {
         //x = x.arraySync();
         return x
     })
-    const classNames = ['SDG 01', 'SDG 02', 'SDG 03', 'SDG 04', 'SDG 05', 'SDG 06', 'SDG 07', 'SDG 08', 'SDG 09', 'SDG 10', 'SDG 11', 'SDG 12', 'SDG 13', 'SDG 14', 'SDG 15', 'SDG 16'];
+    const classNames = ['SDG01', 'SDG02', 'SDG03', 'SDG04', 'SDG05', 'SDG06', 'SDG07', 'SDG08', 'SDG09', 'SDG10', 'SDG11', 'SDG12', 'SDG13', 'SDG14', 'SDG15', 'SDG16'];
 
     function getMostProbableClass(probabilities) {
         const maxProbability = Math.max(...probabilities);
@@ -104,7 +104,7 @@ for (let i = 0; i < prob.length; i++) {
   const top3Cell = row.insertCell(3);
 
   exampleCell.innerHTML = `${i + 1}`;
-  mostProbableCell.innerHTML = classNames[mostProbableClass];
+  mostProbableCell.innerHTML = '<img src="images/'+classNames[mostProbableClass]+'.png" width="80" height="80" alt="'+classNames[mostProbableClass]+'" />';
   probabilityCell.innerHTML = exampleProbabilities[mostProbableClass].toFixed(4);
   top3Cell.innerHTML = top3Classes.map((classIndex) => `${classNames[classIndex]} (${exampleProbabilities[classIndex].toFixed(4)})`).join(', ');
 }
@@ -113,7 +113,7 @@ for (let i = 0; i < prob.length; i++) {
 }
 
 
-function predictSpeech() {     
+function predictSpeech() {
     predictParty().then((x) => {predictOutput.innerHTML = x;});
 }
 

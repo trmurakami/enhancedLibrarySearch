@@ -42,14 +42,14 @@ X_train, X_test, y_train, y_test = train_test_split(
     sequences_padded, encoded_labels, test_size=0.2, random_state=42)
 
 model = keras.Sequential()
-model.add(keras.layers.Embedding(vocab_size, 10,
+model.add(keras.layers.Embedding(vocab_size, 64,
                                  input_length=max_sequence_length, mask_zero=True))
 model.add(keras.layers.LSTM(256, dropout=0.2, recurrent_dropout=0.2))
 model.add(keras.layers.Dense(num_classes, activation='softmax'))
 
 model.compile(loss='sparse_categorical_crossentropy',
               optimizer='adam', metrics=['accuracy'])
-model.fit(X_train, y_train, batch_size=256, epochs=20,
+model.fit(X_train, y_train, batch_size=256, epochs=25,
           validation_data=(X_test, y_test))
 
 loss, accuracy = model.evaluate(X_test, y_test)
