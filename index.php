@@ -72,6 +72,8 @@
                     placeholder="Digite um título e resumo em inglês"></textarea>
                 <div id="submit-button">
                     <button type="submit" class="btn btn-primary mt-4" id="predict-btn" disabled=True>Predict!</button>
+                    <a href="<?php $_SERVER['PHP_SELF']; ?>" class="btn btn-warning mt-4">Recargar</a>
+
                 </div>
             </div>
 
