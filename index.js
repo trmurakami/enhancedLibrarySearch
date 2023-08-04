@@ -85,8 +85,7 @@ function getTopKClasses(probabilities, k) {
       .sort((a, b) => b.probability - a.probability)
       .slice(0, k);
     return topK.map((item) => item.index);
-  }
-  
+}
 
 
 // Mostrar os resultados no HTML
@@ -105,8 +104,8 @@ for (let i = 0; i < prob.length; i++) {
 
   exampleCell.innerHTML = `${i + 1}`;
   mostProbableCell.innerHTML = '<img src="images/'+classNames[mostProbableClass]+'.png" width="80" height="80" alt="'+classNames[mostProbableClass]+'" />';
-  probabilityCell.innerHTML = exampleProbabilities[mostProbableClass].toFixed(4);
-  top3Cell.innerHTML = top3Classes.map((classIndex) => `${classNames[classIndex]} (${exampleProbabilities[classIndex].toFixed(4)})`).join(', ');
+  probabilityCell.innerHTML = exampleProbabilities[mostProbableClass]*100+'%';
+  top3Cell.innerHTML = top3Classes.map((classIndex) => `<img src="images/${classNames[classIndex]}.png" width="80" height="80"> (${exampleProbabilities[classIndex].toFixed(4)})`).join(', ');
 }
 
 
@@ -114,19 +113,8 @@ for (let i = 0; i < prob.length; i++) {
 
 
 function predictSpeech() {
-    predictParty().then((x) => {predictOutput.innerHTML = x;});
+    predictParty().then((x) => {});
 }
-
-
-// function addSample() {
-//     if (sampleSelction.value = 'NHS1'){
-//         document.getElementById('userInput').value = 'The NHS has been ruined by this government. Years of Tory austerity has brought the NHS to its knees.';
-//     } else if (samplesSelection.value = "rivers"){
-//         document.getElementById('userInput').value = "For reasons which they could not comprehend, and in pursuance of a decision by default, on which they were never consulted, they found themselves made strangers in their own country. They found their wives unable to obtain hospital beds in childbirth, their children unable to obtain school places, their homes and neighbourhoods changed beyond recognition, their plans and prospects for the future defeated; at work they found that employers hesitated to apply to the immigrant worker the standards of discipline and competence required of the native-born worker; they began to hear, as time went by, more and more voices which told them that they were now the unwanted. On top of this, they now learn that a one-way privilege is to be established by Act of Parliament; a law which cannot, and is not intended to, operate to protect them or redress their grievances, is to be enacted to give the stranger, the disgruntled and the agent provocateur the power to pillory them for their private actions."
-//     }
-// }
-
-
 
 async function init() {
     sampleSelction = document.getElementById('samples');
