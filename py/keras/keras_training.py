@@ -28,7 +28,7 @@ with io.open('tokenizer_dictionary.json', 'w', encoding='utf-8') as f:
     f.write(json.dumps(tokenizer_json, ensure_ascii=False))
 
 
-max_sequence_length = 256
+max_sequence_length = 304
 
 sequences_padded = pad_sequences(sequences, maxlen=max_sequence_length)
 
@@ -44,18 +44,21 @@ X_train, X_test, y_train, y_test = train_test_split(
 model = keras.Sequential()
 model.add(keras.layers.Embedding(vocab_size, 64,
                                  input_length=max_sequence_length, mask_zero=True))
-model.add(keras.layers.LSTM(256, dropout=0.2, recurrent_dropout=0.2))
+model.add(keras.layers.LSTM(304, dropout=0.2, recurrent_dropout=0.2))
 model.add(keras.layers.Dense(num_classes, activation='softmax'))
 
 model.compile(loss='sparse_categorical_crossentropy',
               optimizer='adam', metrics=['accuracy'])
-model.fit(X_train, y_train, batch_size=256, epochs=25,
-          validation_data=(X_test, y_test))
+model.fit(X_train, y_train, batch_size=304, epochs=25,
+          validation_data=(X_test, y_test), verbose=1, shuffle=True,
+          use_multiprocessing=True, workers=8)
 
 loss, accuracy = model.evaluate(X_test, y_test)
 print(f"Loss: {loss:.4f}, Accuracy: {accuracy:.4f}")
 
-model.save('model_text_classifier.keras')
+# model.save('model_text_classifier.keras')
+tf.keras.saving.save_model(
+    model, 'model_text_classifier.keras', overwrite=True)
 
 predictions = model.predict(X_test)
 y_pred = predictions.argmax(axis=1)

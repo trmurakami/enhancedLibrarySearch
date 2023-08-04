@@ -45,9 +45,9 @@ function tokenize(text) {
     // create a list of slices of the list of tokens
     let i = 0;
     tokenized_text_segments = [];
-    while (i+100 < Math.max(tokens.length, 256)) {
-        var new_slice = tokens.slice(i,i+256);
-        while (new_slice.length < 256) {
+    while (i+100 < Math.max(tokens.length, 304)) {
+        var new_slice = tokens.slice(i,i+304);
+        while (new_slice.length < 304) {
             new_slice.push(0);
           }
         tokenized_text_segments.push(new_slice);
@@ -60,7 +60,7 @@ async function predictParty() {
     const prob = tf.tidy(() => {
         speechText = document.getElementById('userInput').value;
         var x = tokenize(speechText)
-        x = model.predict(tf.tensor2d(x, [x.length, 256]));
+        x = model.predict(tf.tensor2d(x, [x.length, 304]));
 
         x.mean(0).print();
         console.log(x);
