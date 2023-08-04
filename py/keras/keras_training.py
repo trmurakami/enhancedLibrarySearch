@@ -8,9 +8,14 @@ from keras_preprocessing.sequence import pad_sequences
 import pickle
 import json
 import io
-
+import nltk
+from nltk.corpus import stopwords
+nltk.download('stopwords')
+stop_words = stopwords.words('english')
 
 data = pd.read_csv('/var/www/html/ml/py/data/Scopus_SDG.tsv', delimiter='\t')
+data['Data'] = data['Data'].apply(lambda x: ' '.join(
+    [word for word in x.split() if word not in (stop_words)]))
 texts = data['Data'].tolist()
 labels = data['Label'].tolist()
 
