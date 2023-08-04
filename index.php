@@ -7,15 +7,28 @@
     ?>
     <!-- Load TensorFlow.js -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
-    <title>Classificador de SDGs</title>
-
+    <title>Classificador de Sustainable Development Goals (SDGs)</title>
 </head>
 
 <body>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3Z04ZD1KYD"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-3Z04ZD1KYD');
+    </script>
+
     <div class="jumbotron">
         <div class="container bg-light p-5 rounded mt-5">
-            <h1 class="display-5">Classificador de SDGs <a href="https://www.un.org/sustainabledevelopment/"
-                    target="_blank"><img src="images/SDG.png" width="80px"></a></h1>
+            <h1 class="display-5">Classificador - Sustainable Development Goals (SDGs) <a
+                    href="https://www.un.org/sustainabledevelopment/" target="_blank"><img src="images/SDG.png"
+                        width="80px"></a></h1>
             <p>
                 <a href="https://www.un.org/sustainabledevelopment/poverty" target="_blank" nofollow><img
                         src="images/SDG01.png" alt="SDG icons" width="80px" class="mb-1"></a>
