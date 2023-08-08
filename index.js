@@ -2,7 +2,7 @@ let speechText;
 let predictOutput;
 let theButton;
 let vocab;
-let vocabPath = 'Tokenizer/tokenizer_dictionary_old.json';
+let vocabPath = 'Tokenizer/tokenizer_dictionary.json';
 let tokenizer;
 let model;
 let modelPath = 'Model_js/model.json';
