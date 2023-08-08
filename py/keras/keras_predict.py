@@ -26,7 +26,7 @@ with open(path_file / 'tokenizer.pickle', 'rb') as handle:
 model = load_model(path_file / 'model_text_classifier.keras')
 
 # Tamanho máximo das sequências (ajuste conforme necessário)
-max_sequence_length = 304
+max_sequence_length = 350
 
 # Converter as etiquetas em números (opcional, dependendo do formato das etiquetas)
 
