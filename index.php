@@ -7,6 +7,7 @@
     ?>
     <!-- Load TensorFlow.js -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="pdfjs/pdf.js"></script>
     <title>Classificador - Sustainable Development Goals (SDGs)</title>
 </head>
 
@@ -70,6 +71,13 @@
                 <label for="search" class="form-label">Digite título e resumo</label>
                 <textarea class="form-control" id="userInput" rows="6"
                     placeholder="Digite um título e resumo em inglês"></textarea>
+                <form id="pdfForm">
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Ou insira um PDF</label>
+                        <input class="form-control" type="file" id="pdfInput" accept=".pdf">
+                        <button type="submit" class="btn btn-warning mt-4">Extrair Texto (Primeiro passo)</button>
+                    </div>
+                </form>
                 <div id="submit-button">
                     <button type="submit" class="btn btn-primary mt-4" id="predict-btn" disabled=True>Predict!</button>
                     <a href="<?php $_SERVER['PHP_SELF']; ?>" class="btn btn-warning mt-4">Recargar</a>
@@ -92,6 +100,7 @@
 
 
     <script src="./index.js"></script>
+    <script src="./loadpdf.js"></script>
 </body>
 
 </html>
